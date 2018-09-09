@@ -3,12 +3,29 @@
 import random
 
 
-L = [random.randint(0, 100) for x in range(random.randint(10, 100))]
+L = []
 
 
 def lista():
-    return L
+    global L
+    val = 0
+    while val < 10:
+        L.append(random.randint(10, 100))
+        val += 1
+    print L
 
 
 def retorno_lista():
-    return True
+    global L
+    nova_L = []
+    var = True
+    for x in L:
+        if x % 2 == 0:
+            nova_L.append(True)
+        else:
+            nova_L.append(False)
+    print nova_L
+
+
+lista()
+retorno_lista()
