@@ -1,3 +1,4 @@
+"""Exercicio de acesso a dados de lista"""
 
 import sys
 lista = []
@@ -157,6 +158,9 @@ def chama_metodo(val):
         entra_valor()
     elif val == 0:
         finalizaPrograma()
+    else:
+        print "Erro."
+        return menu()
 
 
 entra_valor()
