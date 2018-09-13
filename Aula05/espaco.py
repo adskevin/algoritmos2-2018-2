@@ -14,9 +14,9 @@ def primeiro_teste():
     estrela1 = Estrela()
 
     # impressao dos valores para teste
-    print estrela1.get_x()
-    print estrela1.get_y()
-    print estrela1.get_vel()
+    print(estrela1.get_x())
+    print(estrela1.get_y())
+    print(estrela1.get_vel())
 
     # set dos valores para teste
     estrela1.set_coord_x(500)
@@ -24,9 +24,9 @@ def primeiro_teste():
     estrela1.set_vel(2)
 
     # nova impressao para confirmacao de mudanca de valores
-    print estrela1.get_x()
-    print estrela1.get_y()
-    print estrela1.get_vel()
+    print(estrela1.get_x())
+    print(estrela1.get_y())
+    print(estrela1.get_vel())
 
 
 # criar 5 estrelas com posicoes aleatorias dentro de padroes
@@ -50,10 +50,10 @@ def main():
     qtd = 0
     while qtd < num_estrelas:
         estrelas.append(criacao())
-        print "===================="
-        print estrelas[qtd].get_x()
-        print estrelas[qtd].get_y()
-        print estrelas[qtd].get_vel()
+        print("====================")
+        print(estrelas[qtd].get_x())
+        print(estrelas[qtd].get_y())
+        print(estrelas[qtd].get_vel())
         qtd += 1
 
 
@@ -68,10 +68,10 @@ def move():
         estrelas[qtd].set_coord_x(estrelas[qtd].get_x()-(estrelas[qtd].get_vel() * vel_mult))
         if estrelas[qtd].get_x() <= 0:
             estrelas[qtd] = criacao()
-        print "===================="
-        print estrelas[qtd].get_x()
-        print estrelas[qtd].get_y()
-        print estrelas[qtd].get_vel()
+        print("====================")
+        print(estrelas[qtd].get_x())
+        print(estrelas[qtd].get_y())
+        print(estrelas[qtd].get_vel())
         qtd += 1
 
 
