@@ -68,8 +68,10 @@ def main():
 
     instancia_estrelas()
     instancia_nave()
-
+    # clock = pygame.time.Clock()
     while rodando:
+        # clock.tick(60)
+        # screen.fill((0, 0, 0))
         for event in pygame.event.get():
             x = 0
             y = 0
@@ -116,9 +118,11 @@ def main():
         qtd = 0
 
         # screen.blit(nyan, (200, 200))
-        pygame.draw.rect(screen, BLACK, [0, 0, 800, 600],)
-        screen.blit(pygame.transform.scale(nyan, (80, 50)), (nave.get_x(), nave.get_y()))
 
+
+
+        pygame.draw.rect(screen, BLACK, [nave.get_x(), nave.get_y(), 80, 50],)
+        screen.blit(pygame.transform.scale(nyan, (80, 50)), (nave.get_x(), nave.get_y()))
         while qtd < num_estrelas:
             pygame.draw.rect(screen, BLACK, [estrelas[qtd].get_x(), estrelas[qtd].get_y(), estrelas[qtd].get_vel(), estrelas[qtd].get_vel()],)
             estrelas[qtd].set_coord_x(estrelas[qtd].get_x()-(estrelas[qtd].get_vel() * vel_mult))
