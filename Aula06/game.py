@@ -7,7 +7,7 @@ estrelas = []
 num_estrelas = 40
 vel_mult = 2
 nave = Nave()
-nyan = pygame.image.load("./imgs/nyan.png")
+nyan = pygame.image.load("./imgs/nyan2.png")
 
 
 GREY = (128, 128, 128)
@@ -68,25 +68,25 @@ def main():
 
     instancia_estrelas()
     instancia_nave()
-    # clock = pygame.time.Clock()
+    clock = pygame.time.Clock()
     while rodando:
-        # clock.tick(60)
+        clock.tick(60)
         # screen.fill((0, 0, 0))
         for event in pygame.event.get():
             x = 0
             y = 0
 
             if pygame.key.get_pressed()[pygame.K_UP]:
-                print ("K_UP = True")
+                print("K_UP = True")
                 y = -5
             if pygame.key.get_pressed()[pygame.K_DOWN]:
-                print ("K_DOWN = True")
+                print("K_DOWN = True")
                 y = 5
             if pygame.key.get_pressed()[pygame.K_RIGHT]:
-                print ("K_RIGHT = True")
+                print("K_RIGHT = True")
                 x = 5
             if pygame.key.get_pressed()[pygame.K_LEFT]:
-                print ("K_LEFT = True")
+                print("K_LEFT = True")
                 x = -5
 
             if event.type == pygame.KEYDOWN:
@@ -95,42 +95,38 @@ def main():
 
         # pygame.draw.rect(screen, BLACK, [nave.get_x(), nave.get_y(), 10, 5],)
         if nave.get_y() >= 0 and nave.get_y() <= 600:
-            print ("Entrou em draw", y)
-            print (nave.get_y())
+            print("Entrou em draw", y)
+            print(nave.get_y())
             nave.set_y(nave.get_y() + y)
             if nave.get_y() < 0:
                 nave.set_y(0)
-            if nave.get_y() > 595:
-                nave.set_y(595)
-            print (nave.get_y())
+            if nave.get_y() > 600 - 50:
+                nave.set_y(600 - 50)
+            print(nave.get_y())
 
         if nave.get_x() >= 0 and nave.get_x() <= 800:
-            print ("Entrou em draw", x)
-            print (nave.get_x())
+            print("Entrou em draw", x)
+            print(nave.get_x())
             nave.set_x(nave.get_x() + x)
             if nave.get_x() < 0:
                 nave.set_x(0)
-            if nave.get_x() > 790:
-                nave.set_x(790)
-            print (nave.get_x())
-
+            if nave.get_x() > 800 - 80:
+                nave.set_x(800 - 80)
+            print(nave.get_x())
         # pygame.draw.rect(screen, WHITE, [nave.get_x(), nave.get_y(), 10, 5],)
         qtd = 0
-
         # screen.blit(nyan, (200, 200))
-
-
-
-        pygame.draw.rect(screen, BLACK, [nave.get_x(), nave.get_y(), 80, 50],)
+        # pygame.draw.rect(screen, BLACK, [nave.get_x(), nave.get_y(), 80, 50],)
+        pygame.draw.rect(screen, BLACK, [0, 0, 800, 600],)
         screen.blit(pygame.transform.scale(nyan, (80, 50)), (nave.get_x(), nave.get_y()))
         while qtd < num_estrelas:
-            pygame.draw.rect(screen, BLACK, [estrelas[qtd].get_x(), estrelas[qtd].get_y(), estrelas[qtd].get_vel(), estrelas[qtd].get_vel()],)
+            # pygame.draw.rect(screen, BLACK, [estrelas[qtd].get_x(), estrelas[qtd].get_y(), estrelas[qtd].get_vel(), estrelas[qtd].get_vel()],)
             estrelas[qtd].set_coord_x(estrelas[qtd].get_x()-(estrelas[qtd].get_vel() * vel_mult))
             if estrelas[qtd].get_x() <= 0:
                 estrelas[qtd] = criacao(1)
             pygame.draw.rect(screen, GREY, [estrelas[qtd].get_x(), estrelas[qtd].get_y(), estrelas[qtd].get_vel(), estrelas[qtd].get_vel()],)
-            pygame.display.flip()
             qtd += 1
+        pygame.display.flip()
 
 
 if __name__ == "__main__":
