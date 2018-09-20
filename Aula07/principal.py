@@ -1,41 +1,29 @@
-
+from calcula import Calcula
 
 matrA = []
 matrB = []
 matrC = []
 
 
-def instancia_matrizes(linhas, colunas):
+def instancia_matrizes(linhas, colunas, val):
     M = []
     while linhas > 0:
-        M.append([2] * colunas)
+        M.append([val] * colunas)
         linhas -= 1
     return M
 
 
-def soma_matriz(matrA, matrB):
-    soma = 0
-    lin = len(matrA)
-    col = len(matrB[0])
-    if lin != col:
-        return None
-    C = instancia_matrizes(lin, col)
-
-    for x in range(lin):
-        for y in range(col):
-            for r in range(len(matrA[0])):
-                C[x][y] += matrA[x][r] * matrB[r][y]
-
-    return C
-
-
 def main():
-    matrA = instancia_matrizes(2, 1)
-    matrB = instancia_matrizes(1, 2)
+    calc = Calcula()
+    matrA = instancia_matrizes(5, 4, 2)
+    matrB = instancia_matrizes(4, 5, 2)
+    matrC = calc.soma_matriz(matrA, matrB)
+    print(matrC)
 
-    print(matrA)
-    print(matrB)
-    print(soma_matriz(matrA, matrB))
+    matrA = instancia_matrizes(2, 2, 2)
+    matrB = instancia_matrizes(2, 2, 2)
+    matrC = calc.soma_matriz(matrA, matrB)
+    print(matrC)
 
 
 main()
