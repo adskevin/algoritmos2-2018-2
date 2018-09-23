@@ -4,10 +4,14 @@ import random
 from nave import Nave
 
 estrelas = []
+rastros = []
 num_estrelas = 40
+num_rastros = 10
 vel_mult = 2
 nave = Nave()
+rastrocontrol = Nave()
 nyan = pygame.image.load("./imgs/nyan2.png")
+rastro = pygame.image.load("./imgs/rastro.png")
 
 
 GREY = (128, 128, 128)
@@ -29,6 +33,13 @@ def criacao(param):
     estrela.set_vel(vel)
 
     return estrela
+
+
+def gera_rastro(x, y):
+    rastro = Nave()
+    rastro.set_x = nave.get_x
+    rastro.set_y = nave.get_y
+    return rastro
 
 
 def instancia_estrelas():
@@ -75,6 +86,7 @@ def main():
         for event in pygame.event.get():
             x = 0
             y = 0
+            print event
 
             if pygame.key.get_pressed()[pygame.K_UP]:
                 print("K_UP = True")
@@ -118,14 +130,36 @@ def main():
         # screen.blit(nyan, (200, 200))
         # pygame.draw.rect(screen, BLACK, [nave.get_x(), nave.get_y(), 80, 50],)
         pygame.draw.rect(screen, BLACK, [0, 0, 800, 600],)
+        if len(rastros) < num_rastros:
+            if len(rastros) == 0:
+                rastros.append(gera_rastro(nave.x, nave.y))
+            else:
+                rastros.append(gera_rastro(rastros[len(rastros)-1].x, rastros[len(rastros)-1].y))
+        else:
+            qtd = 0
+            while qtd < len(rastros):
+                if qtd == 0:
+                    rastros[qtd].x = nave.x
+                    rastros[qtd].y = nave.y
+                else:
+                    rastros[qtd].x = rastros[qtd-1].x - 20
+                    if qtd % 2 == 0:
+                        rastros[qtd].y = rastros[qtd-1].y - 1
+                    else:
+                        rastros[qtd].y = rastros[qtd-1].y + 1
+                screen.blit(pygame.transform.scale(rastro, (20, 50)), (rastros[qtd].x, rastros[qtd].y))
+                qtd += 1
         screen.blit(pygame.transform.scale(nyan, (80, 50)), (nave.get_x(), nave.get_y()))
         while qtd < num_estrelas:
-            # pygame.draw.rect(screen, BLACK, [estrelas[qtd].get_x(), estrelas[qtd].get_y(), estrelas[qtd].get_vel(), estrelas[qtd].get_vel()],)
             estrelas[qtd].set_coord_x(estrelas[qtd].get_x()-(estrelas[qtd].get_vel() * vel_mult))
             if estrelas[qtd].get_x() <= 0:
                 estrelas[qtd] = criacao(1)
             pygame.draw.rect(screen, GREY, [estrelas[qtd].get_x(), estrelas[qtd].get_y(), estrelas[qtd].get_vel(), estrelas[qtd].get_vel()],)
             qtd += 1
+
+
+
+
         pygame.display.flip()
 
 
