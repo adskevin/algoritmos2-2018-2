@@ -86,7 +86,7 @@ def main():
         for event in pygame.event.get():
             x = 0
             y = 0
-            print event
+            print(event)
 
             if pygame.key.get_pressed()[pygame.K_UP]:
                 print("K_UP = True")
