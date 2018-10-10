@@ -5,8 +5,8 @@ from nave import Nave
 
 estrelas = []
 rastros = []
-num_estrelas = 40
-num_rastros = 10
+num_estrelas = 300
+num_rastros = 5
 vel_mult = 2
 nave = Nave()
 rastrocontrol = Nave()
@@ -82,7 +82,6 @@ def main():
     clock = pygame.time.Clock()
     while rodando:
         clock.tick(60)
-        # screen.fill((0, 0, 0))
         for event in pygame.event.get():
             x = 0
             y = 0
@@ -156,9 +155,6 @@ def main():
                 estrelas[qtd] = criacao(1)
             pygame.draw.rect(screen, GREY, [estrelas[qtd].get_x(), estrelas[qtd].get_y(), estrelas[qtd].get_vel(), estrelas[qtd].get_vel()],)
             qtd += 1
-
-
-
 
         pygame.display.flip()
 
