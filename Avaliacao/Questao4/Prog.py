@@ -122,16 +122,16 @@ bola = criabola([200, 300], 30, white)
 def colide(bola, rect):
 
     val = True
-    if bola.y + bola.radius < rect.y:
+    if bola.y + bola.radius + 5 < rect.y:
         val = False
-    if bola.y - bola.radius > rect.y + rect.altura:
+    if bola.y - bola.radius - 5 > rect.y + rect.altura:
         val = False
-    if bola.x + bola.radius < rect.x:
+    if bola.x + bola.radius + 5 < rect.x:
         val = False
-    if bola.x - bola.radius > rect.x + rect.largura:
+    if bola.x - bola.radius - 5 > rect.x + rect.largura:
         val = False
     if val:
-        print bola.y - bola.radius > rect.y + rect.altura
+        print(bola.y - bola.radius > rect.y + rect.altura)
     return val
 
 
@@ -164,7 +164,7 @@ def main():
     x_move_bola = 0
     y_move_bola = 0
     while rodando:
-        clock.tick(60)
+        clock.tick(10)
         pygame.draw.rect(screen, black, [0, 0, 400, 400],)
         for event in pygame.event.get():
             x = 0
@@ -195,7 +195,7 @@ def main():
         alt = rebatedor.altura
         pygame.draw.rect(screen, color, [xr, yr, larg, alt],)
         colision = False
-        movebola()
+        # movebola()
         for i in range(len(retangulos)):
             colision = colide(bola, retangulos[i])
             if colision is True:
@@ -212,7 +212,7 @@ def main():
                 if lado is 4:
                     print("Colidiu - Baixo")
                     bola.movey = 5
-                # break
+        movebola()
 
         pygame.draw.circle(screen, bola.color, [bola.x, bola.y], bola.radius, )
         for i in range(len(retangulos)):
