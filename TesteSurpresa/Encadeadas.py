@@ -6,6 +6,7 @@ class No:
         """Inicializa no."""
         self.dado = valor
         self.proximo = None
+        self.anterior = None
 
 
 class Lista:
