@@ -166,13 +166,11 @@ x.remove(60)
 obj = x.find(41)
 if obj is not None:
     print "Dado encontrado na lista:", obj.dado
-# print "Pop: ", x.pop().dado
 print "--------------------------------------"
 print "Size: ", x.listSize()
 print "First: ", x.first().dado
 print "Last: ", x.last().dado
 print "--------------------------------------"
-
 index = x.index_list
 index.print_list_simple_2()
 print "--------------------------------------"
