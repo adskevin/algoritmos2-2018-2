@@ -11,6 +11,81 @@ class No:
 
 class Lista:
 
+    # def set_first(self, valor):  # Adiciona o primeiro elemento na lista
+    #     self.head = No(valor)
+    #     self.tail = self.head
+    #     self.proximo = None
+    #
+    # def append(self, valor):  # Adiciona um elemento no final da lista
+    #     if (self.head is None):
+    #         self.set_first(valor)
+    #
+    #     else:
+    #         atual = self.tail
+    #         self.tail = No(valor)
+    #         self.tail.anterior = atual
+    #         atual.proximo = self.tail
+    #
+    #     self.size += 1
+    #
+    # def addFirst(self, valor):  # Adiciona um elemento no comeco da lista
+    #     if (self.head is None):
+    #         self.set_first(valor)
+    #
+    #     else:
+    #         novo_no = No(valor)
+    #         novo_no.proximo = self.head
+    #         self.head.anterior = novo_no
+    #         self.head = novo_no
+    #         novo_no.anterior = None
+    #
+    #     self.size += 1
+    #
+    # def removeFirst(self):  # Remove o primeiro elemento da lista
+    #     if(self.head is None):  # Verifica se a lista nao esta vazia
+    #         return
+    #     else:
+    #         new_head = self.head.proximo
+    #         new_head.anterior = None
+    #         self.head = new_head
+    #     self.size -= 1
+    #
+    # def removeLast(self):  # Remove o ultimo elemento da lista
+    #     if(self.head is None):
+    #         return
+    #     else:
+    #         self.tail = self.tail.anterior
+    #         self.tail.proximo = None
+    #     self.size -= 1
+
+    # def remove(self, valor):  # Remove os objetos com dado igual a "valor"
+    #     atual = self.head
+    #     while atual is not None:  # Enquanto atual nao for None
+    #         if atual.dado == valor:
+    #             if atual == self.head:  # Se atual for o head
+    #                 self.head = atual.proximo
+    #                 self.head.anterior = None
+    #                 self.size -= 1
+    #             elif atual == self.tail:  # Se o atual for o tail
+    #                 self.tail = self.tail.anterior
+    #                 self.tail.proximo = None
+    #                 atual = self.tail.anterior
+    #                 self.size -= 1
+    #             else:  # Se nao for nem head nem tail
+    #                 anterior = atual.anterior
+    #                 proximo = atual.proximo
+    #                 anterior.proximo = proximo
+    #                 proximo.anterior = anterior
+    #                 self.size -= 1
+    #         atual = atual.proximo
+    #
+    # def pop(self):  # Elimina ultimo elemento e o retorna
+    #     valor = self.tail
+    #     self.tail = self.tail.anterior
+    #     self.tail.proximo = None
+    #     self.size -= 1
+    #     return valor
+
     def __init__(self):
         self.head = None
         self.tail = None
@@ -143,7 +218,7 @@ class Lista:
                 break
             i_index = i_index.proximo
 
-    def remove(self, valor):  # Remove o no com valor correspondente, se existir e o retorna
+    def remove(self, valor):
         obj = self.find(valor)
         if obj is None:
             return None
