@@ -1,28 +1,12 @@
-"""Exercicio de colisao"""
-ponto = [0, 0]
-retang = [0, 0]
-retangDimension = 0
-dimension = [0, 0]
+"""Exercicio de colisao."""
 
 
-def menu():
-    global ponto
-    global retang
-    global dimension
-    ponto[0] = int(input("Digite a Coordenada X para o ponto: "))
-    ponto[1] = int(input("Digite a Coordenada Y para o ponto: "))
-    # print(ponto)
-    retang[0] = int(input("Digite a Coordenada X para o retângulo: "))
-    retang[1] = int(input("Digite a Coordenada Y para o retângulo: "))
-    # print(retang)
-    dimension[0] = int(input("Digite a Dimensão X do retângulo: "))
-    dimension[1] = int(input("Digite a Dimensão Y do retângulo: "))
-    teste()
-
-
-def teste():
-    global retang
-    global dimension
+def teste(ponto, retang):
+    """Testa se ponto está dentro de retangulo."""
+    dimension = [0, 0]
+    # print(retang[2], retang[3])
+    dimension[0] = retang[2]
+    dimension[1] = retang[3]
     x = retang[0]
     y = retang[1]
     isIn = False
@@ -36,9 +20,8 @@ def teste():
             y += 1
         x += 1
     if (isIn):
-        print("Está dentro.")
+        # print("Está dentro.")
+        return True
     else:
-        print("Não está dentro.")
-
-
-menu()
+        # print("Não está dentro.")
+        return False
