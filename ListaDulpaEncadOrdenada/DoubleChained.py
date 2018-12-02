@@ -36,7 +36,7 @@ class Lista:
             self.head = new_knot
             self.tail = new_knot
             self.size += 1
-        elif valor <= obj.dado:
+        elif valor <= obj.dado:  # Se o valor for o primeiro da lista
             new_knot = No(valor)
             old_head = self.head
             new_knot.proximo = old_head
@@ -52,7 +52,7 @@ class Lista:
             self.size += 1
         else:
             while obj.proximo is not None:  # Analiza o valor do proximo objeto
-                if valor <= obj.proximo.dado:  # Se o valor for menor que o proximo
+                if valor <= obj.proximo.dado:  # Se o valor for menor ou igual ao proximo
                     new_knot = No(valor)
                     proximo = obj.proximo
                     obj.proximo = new_knot
@@ -63,7 +63,7 @@ class Lista:
                     break
                 obj = obj.proximo
 
-    def create_index_list(self):  # Cria a lista de indice
+    def create_index_list(self):  # Cria a lista de indices
         obj_list = self.head
         if self.index_list is None:
             self.index_list = Lista()
