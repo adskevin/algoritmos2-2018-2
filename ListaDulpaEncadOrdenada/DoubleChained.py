@@ -1,34 +1,43 @@
+"""Lista duplamente encadeada com busca indexada."""
 import random
 
 
 class No:
+    """Classe no."""
 
     def __init__(self, val):
+        """Metodo construtor do no."""
         self.dado = val
         self.proximo = None
         self.anterior = None
 
 
 class Lista:
+    """Clases lista."""
 
     def __init__(self):
+        """Metodo construtor da lista."""
         self.head = None
         self.tail = None
         self.size = 0
         self.index_list = None
 
-    def listSize(self):  # Retorna o tamanho da lista
+    def listSize(self):
+        """Retorna o tamanho da lista."""
         return self.size
 
-    def first(self):  # Retorna o primeiro elemento da lista
+    def first(self):
+        """Retorna o primeiro elemento da lista."""
         if self.head is not None:
             return self.head
 
-    def last(self):  # Retorna o ultimo elemento da lista
+    def last(self):
+        """Retorna o ultimo elemento da lista."""
         if self.head is not None:
             return self.tail
 
-    def ord_append(self, valor):  # Inclusao ordenada de valores
+    def ord_append(self, valor):
+        """Inclusao ordenada de valores."""
         self.index_list = None
         obj = self.head
         if obj is None:  # Se a lista estiver vazia
@@ -63,7 +72,8 @@ class Lista:
                     break
                 obj = obj.proximo
 
-    def create_index_list(self):  # Cria a lista de indices
+    def create_index_list(self):
+        """Cria a lista de indices."""
         obj_list = self.head
         if self.index_list is None:
             self.index_list = Lista()
@@ -84,12 +94,14 @@ class Lista:
             x += 1
 
     def print_list_simple(self):
+        """Impressao simples da lista."""
         i = self.head
         while i is not None:
             print i.dado
             i = i.proximo
 
     def print_list_simple_2(self):
+        """Impressao utilizada para imprimir o dado do dado do indice."""
         i = self.head
         while i.proximo is not None:
             i_dado = i.dado
@@ -97,6 +109,7 @@ class Lista:
             i = i.proximo
 
     def print_list(self):
+        """Impressao utilizada para debug."""
         i = self.head
         while i is not None:
             anterior = i.anterior
@@ -113,16 +126,19 @@ class Lista:
             i = i.proximo
             print
 
-    def insert_valores(self, quantidade):  # Insere uma quantidade definida de valores aleatorios
+    def insert_valores(self, quantidade):
+        """Insere uma quantidade definida de valores aleatorios."""
         for i in range(quantidade):
             rand = random.randint(0, 200)
             self.ord_append(rand)
 
-    def insert_valores_ord(self, quantidade):  # Insere uma quantidade definida de valores ordenados
+    def insert_valores_ord(self, quantidade):
+        """Insere uma quantidade definida de valores ordenados."""
         for i in range(quantidade):
             self.ord_append(i)
 
-    def find(self, valor):  # Encontra um valor na lista e retorna o no da lista
+    def find(self, valor):
+        """Encontra um valor na lista e retorna o no da lista."""
         self.create_index_list()
         i_index = self.index_list.head
         while i_index is not None:
@@ -143,7 +159,8 @@ class Lista:
                 break
             i_index = i_index.proximo
 
-    def remove(self, valor):  # Remove o no com valor correspondente, se existir e o retorna
+    def remove(self, valor):
+        """Remove o no com valor correspondente, se existir e o retorna."""
         obj = self.find(valor)
         if obj is None:
             return None
