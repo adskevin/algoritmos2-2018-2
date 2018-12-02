@@ -1,3 +1,4 @@
+"""Exercicio com pygame."""
 import pygame
 from estrela import Estrela
 import random
@@ -10,8 +11,7 @@ num_rastros = 5
 vel_mult = 2
 nave = Nave()
 rastrocontrol = Nave()
-nyan = pygame.image.load("./imgs/nyan2.png")
-rastro = pygame.image.load("./imgs/rastro.png")
+nave_espacial = pygame.image.load("./imgs/nave.png")
 
 
 GREY = (128, 128, 128)
@@ -20,6 +20,7 @@ WHITE = (255, 255, 255)
 
 
 def criacao(param):
+    """Metodo de criacao de estrela."""
     if param == 0:
         x = random.randint(0, 800)
     elif param == 1:
@@ -35,14 +36,8 @@ def criacao(param):
     return estrela
 
 
-def gera_rastro(x, y):
-    rastro = Nave()
-    rastro.set_x = nave.get_x
-    rastro.set_y = nave.get_y
-    return rastro
-
-
 def instancia_estrelas():
+    """Instancia uma quantidade de estrelas."""
     global num_estrelas
     qtd = 0
     while qtd < num_estrelas:
@@ -51,27 +46,14 @@ def instancia_estrelas():
 
 
 def instancia_nave():
+    """Instancia uma nave."""
     nave = Nave()
     nave.set_x = 100
     nave.set_y = 100
 
 
-def controle():
-    if event.key == pygame.K_UP:
-        if nave.get_y() >= 0:
-            nave.set_y(nave.get_y() - 5)
-    if event.key == pygame.K_DOWN:
-        if nave.get_y() <= 600:
-            nave.set_y(nave.get_y() + 5)
-    if event.key == pygame.K_LEFT:
-        if nave.get_x() >= 0:
-            nave.set_x(nave.get_x() - 5)
-    if event.key == pygame.K_RIGHT:
-        if nave.get_x() <= 800:
-            nave.set_x(nave.get_x() + 5)
-
-
 def main():
+    """Metodo main do projeto."""
     global num_estrelas
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
@@ -104,7 +86,6 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     rodando = False
 
-        # pygame.draw.rect(screen, BLACK, [nave.get_x(), nave.get_y(), 10, 5],)
         if nave.get_y() >= 0 and nave.get_y() <= 600:
             print("Entrou em draw", y)
             print(nave.get_y())
@@ -124,31 +105,9 @@ def main():
             if nave.get_x() > 800 - 80:
                 nave.set_x(800 - 80)
             print(nave.get_x())
-        # pygame.draw.rect(screen, WHITE, [nave.get_x(), nave.get_y(), 10, 5],)
         qtd = 0
-        # screen.blit(nyan, (200, 200))
-        # pygame.draw.rect(screen, BLACK, [nave.get_x(), nave.get_y(), 80, 50],)
         pygame.draw.rect(screen, BLACK, [0, 0, 800, 600],)
-        if len(rastros) < num_rastros:
-            if len(rastros) == 0:
-                rastros.append(gera_rastro(nave.x, nave.y))
-            else:
-                rastros.append(gera_rastro(rastros[len(rastros)-1].x, rastros[len(rastros)-1].y))
-        else:
-            qtd = 0
-            while qtd < len(rastros):
-                if qtd == 0:
-                    rastros[qtd].x = nave.x
-                    rastros[qtd].y = nave.y
-                else:
-                    rastros[qtd].x = rastros[qtd-1].x - 20
-                    if qtd % 2 == 0:
-                        rastros[qtd].y = rastros[qtd-1].y - 1
-                    else:
-                        rastros[qtd].y = rastros[qtd-1].y + 1
-                screen.blit(pygame.transform.scale(rastro, (20, 50)), (rastros[qtd].x, rastros[qtd].y))
-                qtd += 1
-        screen.blit(pygame.transform.scale(nyan, (80, 50)), (nave.get_x(), nave.get_y()))
+        screen.blit(pygame.transform.scale(nave_espacial, (80, 50)), (nave.get_x(), nave.get_y()))
         while qtd < num_estrelas:
             estrelas[qtd].set_coord_x(estrelas[qtd].get_x()-(estrelas[qtd].get_vel() * vel_mult))
             if estrelas[qtd].get_x() <= 0:
