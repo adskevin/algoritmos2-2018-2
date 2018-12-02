@@ -1,20 +1,24 @@
-"""True ou False para os valores de uma lista"""
+"""True ou False para os valores de uma lista."""
 
 from behave import given, then, when
 
-from cod_lista import lista, retorno_lista
+from cod_lista import cria_lista_random, newList
 
 
-@given(u'a lista (L)')
+@given('a lista (L)')
 def carregar_lista(context):
-    context.lista = lista
+    """Cria a lista."""
+    context.list = cria_lista_random(10)
 
 
-@when(u'quero saber quais sao pares ou impares')
-def retorna_lista_par_impar(context):
-    context.retorno = retorno_lista
+@when('quero saber quais sao pares ou impares')
+def testa_par_impar(context):
+    """Chama metodo para criar listas de True ou False."""
+    context.newlist = newList(context.list)
 
 
-@then(u'retorno True ou False')
-def resultado(context):
-    context.retorno = True or False
+@then('retorno True ou False')
+def asserta_resultado(context):
+    """Testa trues e falses."""
+    assert True
+    # Nao soube que tipo de teste e necessario aqui

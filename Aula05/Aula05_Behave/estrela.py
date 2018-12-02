@@ -1,12 +1,18 @@
 # Espaco.py
 
+import random
+
 
 class Estrela:
 
     def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.spd = 1
+        self.x = 800
+        self.y = random.randint(0, 600)
+        self.x_old = self.x
+        self.y_old = self.y
+        self.spd = random.randint(1, 3)
+        self.spd_old = self.spd
+        self.alive = True
 
     def set_vel(self, vel):
         # global spd
@@ -26,6 +32,12 @@ class Estrela:
             self.y = coord_y
         elif coord_y < 0:
             self.y = 0
+
+    def move_estrela(self):
+        if self.x >= 0 and self.x <= 800:
+            self.x = self.x - self.spd
+        if self.x < 0 or self.x > 800:
+            self.alive = False
 
     def get_x(self):
         return self.x

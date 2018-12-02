@@ -1,31 +1,31 @@
-"""Lista"""
+"""Lista."""
 
 import random
 
 
-L = []
+def teste(valor):
+    """Testa se valor e par ou impar."""
+    if valor % 2 == 0:
+        return True
+    else:
+        return False
 
 
-def lista():
-    global L
-    val = 0
+def cria_lista_random(val):
+    """Cria lista random."""
+    L = []
     while val < 10:
         L.append(random.randint(10, 100))
         val += 1
-    print L
+    return L
 
 
-def retorno_lista():
-    global L
-    nova_L = []
-    var = True
-    for x in L:
-        if x % 2 == 0:
-            nova_L.append(True)
-        else:
-            nova_L.append(False)
-    print nova_L
-
-
-lista()
-retorno_lista()
+def newList(list):
+    """Cria lista True False."""
+    newlist = []
+    val = len(list)-1
+    x = 0
+    while x <= val:
+        newlist.append(teste(list[x]))
+        x += 1
+    return newlist
