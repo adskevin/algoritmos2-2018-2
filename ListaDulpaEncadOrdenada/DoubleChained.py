@@ -33,8 +33,45 @@ class Lista:
 
     def last(self):
         """Retorna o ultimo elemento da lista."""
-        if self.head is not None:
+        if self.tail is not None:
             return self.tail
+
+    def ord_append_index(self, valor):
+        """Inclusao ordenada de valores."""
+        self.index_list = None
+        obj = self.head
+        # print "valor =", valor.dado
+        if obj is None:  # Se a lista estiver vazia
+            new_knot = No(valor)
+            self.head = new_knot
+            self.tail = self.head
+            self.size += 1
+        elif valor.dado <= obj.dado:  # Se o valor for o primeiro da lista
+            new_knot = No(valor)
+            old_head = self.head
+            new_knot.proximo = old_head
+            old_head.anterior = new_knot
+            self.head = new_knot
+            self.size += 1
+        elif valor.dado >= self.tail.dado:  # Se o valor for o ultimo da lista
+            new_knot = No(valor)
+            old_tail = self.tail
+            new_knot.anterior = old_tail
+            old_tail.proximo = new_knot
+            self.tail = new_knot
+            self.size += 1
+        else:
+            while obj.proximo is not None:  # Analiza o valor do proximo objeto
+                if valor <= obj.proximo.dado:  # Se o valor for menor ou igual ao proximo
+                    new_knot = No(valor)
+                    proximo = obj.proximo
+                    obj.proximo = new_knot
+                    new_knot.anterior = obj
+                    proximo.anterior = new_knot
+                    new_knot.proximo = proximo
+                    self.size += 1
+                    break
+                obj = obj.proximo
 
     def ord_append(self, valor):
         """Inclusao ordenada de valores."""
@@ -43,7 +80,7 @@ class Lista:
         if obj is None:  # Se a lista estiver vazia
             new_knot = No(valor)
             self.head = new_knot
-            self.tail = new_knot
+            self.tail = self.head
             self.size += 1
         elif valor <= obj.dado:  # Se o valor for o primeiro da lista
             new_knot = No(valor)
@@ -74,10 +111,10 @@ class Lista:
 
     def create_index_list(self):
         """Cria a lista de indices."""
-        obj_list = self.head
         if self.index_list is None:
             self.index_list = Lista()
         index_list = self.index_list
+        obj_list = self.head
         if index_list.head is None:
             index_list.head = No(obj_list)
             index_list.tail = index_list.head
@@ -86,11 +123,13 @@ class Lista:
             i = 0
             while i < 10:
                 if obj_list.proximo is not None:
+                    # print "OBJLIST =", obj_list.dado
                     obj_list = obj_list.proximo
                 else:
                     break
                 i += 1
-            index_list.ord_append(obj_list)
+            # print "ADDEU =", obj_list.dado
+            index_list.ord_append_index(obj_list)
             x += 1
 
     def print_list_simple(self):
@@ -100,13 +139,16 @@ class Lista:
             print i.dado
             i = i.proximo
 
-    def print_list_simple_2(self):
+    def print_list_simple_index(self):
         """Impressao utilizada para imprimir o dado do dado do indice."""
-        i = self.head
-        while i.proximo is not None:
-            i_dado = i.dado
-            print i_dado.dado
-            i = i.proximo
+        valor = self.head
+        while valor is not None:
+            valor_dado = valor.dado
+            print valor_dado.dado
+            if valor.proximo is not None:
+                valor = valor.proximo
+            else:
+                break
 
     def print_list(self):
         """Impressao utilizada para debug."""
@@ -147,10 +189,10 @@ class Lista:
                 print "O valor nao esta na lista."
                 return None
             elif i_list.dado >= valor:
-                print "Index encontrado:", i_list.dado  # Dado do objeto
+                # print "Index encontrado:", i_list.dado  # Dado do objeto
                 while i_list.dado > valor:
                     i_list = i_list.anterior
-                print "Saiu do while com o valor:", i_list.dado
+                # print "Saiu do while com o valor:", i_list.dado
                 if i_list.dado == valor:
                     return i_list
                 else:
@@ -171,6 +213,7 @@ class Lista:
             anterior.proximo = proximo
             proximo.anterior = anterior
             print "Valor removido:", obj.dado
+            self.size -= 1
             return obj
 
 
@@ -189,6 +232,8 @@ print "First: ", x.first().dado
 print "Last: ", x.last().dado
 print "--------------------------------------"
 index = x.index_list
-index.print_list_simple_2()
+print "First_i: ", index.first().dado.dado
+print "Last_i: ", index.last().dado.dado
+index.print_list_simple_index()
 print "--------------------------------------"
 x.print_list_simple()
