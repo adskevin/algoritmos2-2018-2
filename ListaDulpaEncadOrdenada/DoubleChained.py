@@ -40,20 +40,20 @@ class Lista:
         """Inclusao ordenada de valores."""
         self.index_list = None
         obj = self.head
-        # print "valor =", valor.dado
+        # print "valor =", self.tail.dado.dado
         if obj is None:  # Se a lista estiver vazia
             new_knot = No(valor)
             self.head = new_knot
             self.tail = self.head
             self.size += 1
-        elif valor.dado <= obj.dado:  # Se o valor for o primeiro da lista
+        elif valor.dado <= obj.dado.dado:  # Se o valor for o primeiro da lista
             new_knot = No(valor)
             old_head = self.head
             new_knot.proximo = old_head
             old_head.anterior = new_knot
             self.head = new_knot
             self.size += 1
-        elif valor.dado >= self.tail.dado:  # Se o valor for o ultimo da lista
+        elif valor.dado >= self.tail.dado.dado:  # Se o valor for o ultimo da lista
             new_knot = No(valor)
             old_tail = self.tail
             new_knot.anterior = old_tail
