@@ -62,7 +62,7 @@ class Lista:
             self.size += 1
         else:
             while obj.proximo is not None:  # Analiza o valor do proximo objeto
-                if valor <= obj.proximo.dado:  # Se o valor for menor ou igual ao proximo
+                if valor.dado <= obj.proximo.dado:  # Se o valor for menor ou igual ao proximo
                     new_knot = No(valor)
                     proximo = obj.proximo
                     obj.proximo = new_knot
